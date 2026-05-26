@@ -91,3 +91,13 @@ npm install
 npm link
 morpho-risk <walletAddress> [threshold]
 ```
+
+## Networks
+
+Pass a network as the third argument (default: base):
+
+```bash
+node index.js <walletAddress> <threshold> <network>
+```
+
+Supported: `base`, `ethereum`, `arbitrum`, `polygon`, `optimism`. The Morpho contract address is the same across all chains. Public RPCs are used by default; for `ethereum` a private RPC is recommended as public ones often rate-limit log queries.

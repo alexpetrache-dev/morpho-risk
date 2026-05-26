@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 import { createPublicClient, http, parseAbiItem } from "viem";
-import { base } from "viem/chains";
+import { base, mainnet, arbitrum, polygon, optimism } from "viem/chains";
+const NETWORKS = {
+  base: { chain: base, rpc: "https://mainnet.base.org" },
+  ethereum: { chain: mainnet, rpc: "https://ethereum-rpc.publicnode.com" },
+  arbitrum: { chain: arbitrum, rpc: "https://arb1.arbitrum.io/rpc" },
+  polygon: { chain: polygon, rpc: "https://polygon-rpc.com" },
+  optimism: { chain: optimism, rpc: "https://mainnet.optimism.io" },
+};
 const MORPHO = "0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb";
 const user = process.argv[2] || "0xC4C00d8b323f37527eEda27c87412378be9F68Ec";
 const threshold = Number(process.argv[3]) || 1.0;
-const client = createPublicClient({ chain: base, transport: http("https://mainnet.base.org") });
+const netName = (process.argv[4] || "base").toLowerCase();
+const net = NETWORKS[netName];
+if (!net) { console.log("Red no soportada:", netName, "- opciones:", Object.keys(NETWORKS).join(", ")); process.exit(1); }
+const client = createPublicClient({ chain: net.chain, transport: http(net.rpc) });
 const supplyCollateral = parseAbiItem("event SupplyCollateral(bytes32 indexed id, address indexed caller, address indexed onBehalf, uint256 assets)");
 const latest = await client.getBlockNumber();
 const CHUNK = 10000n;
