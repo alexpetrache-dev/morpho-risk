@@ -73,3 +73,11 @@ node scan.js <walletAddress>
 ```
 
 It scans the last ~50,000 blocks (~1 day) for collateral activity. For full history you would need an indexer (out of scope for this lightweight tool).
+
+### Alert threshold
+
+Pass a health factor threshold as a second argument. Any position below it is flagged with an alert:
+
+```bash
+node scan.js <walletAddress> 1.10
+```
