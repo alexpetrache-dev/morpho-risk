@@ -81,3 +81,13 @@ Pass a health factor threshold as a second argument. Any position below it is fl
 ```bash
 node scan.js <walletAddress> 1.10
 ```
+
+## Install as a command
+
+Once installed, you can run it directly as `morpho-risk` from anywhere:
+
+```bash
+npm install
+npm link
+morpho-risk <walletAddress> [threshold]
+```

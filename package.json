@@ -1,16 +1,19 @@
 {
   "name": "morpho-risk",
   "version": "1.0.0",
-  "description": "",
+  "description": "Check Morpho liquidation risk on Base from public RPC",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "viem": "^2.51.0"
   },
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "morpho-risk": "index.js"
+  }
 }
