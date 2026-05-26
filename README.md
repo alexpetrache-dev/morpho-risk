@@ -66,7 +66,7 @@ MIT
 
 ## Scan a whole wallet
 
-Instead of checking one market at a time, scan all of a wallet's recent Morpho positions on Base and get the health factor of each:
+Instead of checking one market at a time, scan all of a wallet's recent Morpho positions on Base and get the health factor, liquidation price, and how much the collateral price can drop before liquidation:
 
 ```bash
 node scan.js <walletAddress>

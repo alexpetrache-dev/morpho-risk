@@ -38,9 +38,11 @@ for (const id of markets) {
   const collateralValue = (p[2] * price) / ORACLE_SCALE;
   const maxBorrow = (collateralValue * lltv) / WAD;
   const hf = debt === 0n ? null : Number((maxBorrow * WAD) / debt) / 1e18;
+  const liqPrice = (p[2] === 0n || lltv === 0n) ? null : (debt * ORACLE_SCALE) / ((p[2] * lltv) / WAD);
   console.log("Market:", id.slice(0, 10) + "...");
   console.log("  Debt:   ", (Number(debt) / 1e18).toFixed(4));
   console.log("  Collat value:", (Number(collateralValue) / 1e18).toFixed(4));
   console.log("  Health factor:", hf === null ? "no debt" : hf.toFixed(4), hf === null ? "" : (hf >= 1 ? "HEALTHY" : "LIQUIDATABLE!"));
+  if (liqPrice !== null) { const drop = (Number(price - liqPrice) / Number(price)) * 100; console.log("  Liq. price:   ", (Number(liqPrice) / 1e36).toFixed(6), "(price can drop " + drop.toFixed(1) + "% before liquidation)"); }
   console.log("");
 }
