@@ -63,3 +63,13 @@ node find-borrower.js
 ## License
 
 MIT
+
+## Scan a whole wallet
+
+Instead of checking one market at a time, scan all of a wallet's recent Morpho positions on Base and get the health factor of each:
+
+```bash
+node scan.js <walletAddress>
+```
+
+It scans the last ~50,000 blocks (~1 day) for collateral activity. For full history you would need an indexer (out of scope for this lightweight tool).
